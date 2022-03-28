@@ -9,11 +9,11 @@ containerdConfigPatches:
       endpoint = ["http://kind-registry:5000"]
 nodes:
   - role: control-plane
-    image: kindest/node:v1.18.8
+    image: kindest/node:v1.23.5
   - role: worker
-    image: ghcr.io/marshallwace/kind-node:17
+    image: nresare/kind-node:23
   - role: worker
-    image: ghcr.io/marshallwace/kind-node:18
+    image: nresare/kind-node:22
     extraMounts:
       - hostPath: /tmp
         containerPath: /sensitive

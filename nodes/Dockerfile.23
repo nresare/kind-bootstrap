@@ -1,0 +1,10 @@
+FROM kindest/node:v1.23.5
+
+LABEL org.opencontainers.image.source https://github.com/resarn/kind-bootstrap
+
+# this is copied from https://gvisor.dev/docs/user_guide/install/
+RUN ARCH=$(uname -m) VERSION=20220228 \
+  URL=https://storage.googleapis.com/gvisor/releases/release/${VERSION}/${ARCH} \
+  && curl -sSL --retry 5 -o /usr/bin/runsc ${URL}/runsc \
+  && curl -sSL --retry 5 -o /usr/bin/containerd-shim-runsc-v1 ${URL}/containerd-shim-runsc-v1 \
+  && chmod a+rx /usr/bin/runsc /usr/bin/containerd-shim-runsc-v1
